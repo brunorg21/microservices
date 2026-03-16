@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Itens de Solução/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/ApiGateway/" />
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/Restaurant/">
+    <Project Path="src/Services/Restaurant/Restaurant.Api/Restaurant.Api.csproj" />
+  </Folder>
+</Solution>
