@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path="development.yml" />
+  </Folder>
   <Folder Name="/Itens de Solução/">
     <File Path=".gitignore" />
   </Folder>
