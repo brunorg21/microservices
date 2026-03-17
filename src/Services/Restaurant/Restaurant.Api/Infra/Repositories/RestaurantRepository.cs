@@ -9,6 +9,8 @@ namespace Restaurant.Api.Infra.Repositories
         {
             var entry = await dbContext.Restaurants.AddAsync(restaurant, ct);
 
+            await dbContext.SaveChangesAsync(ct);
+
             return entry.Entity;
         }
     }

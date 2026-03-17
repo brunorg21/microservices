@@ -1,18 +1,12 @@
-using Restaurant.Api.Application;
-using Restaurant.Api.Infra;
-using Scalar.AspNetCore;
+using Customer.Api.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
-// Add infra
-
+//Add Infra
 builder.Services.AddInfra(builder.Configuration);
 
-// Add Application
-
-builder.Services.AddApplication();
+// Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -24,7 +18,6 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference("/api-docs");
 }
 
 app.UseHttpsRedirection();
