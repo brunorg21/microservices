@@ -1,3 +1,4 @@
+using Restaurant.Api.Application;
 using Restaurant.Api.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add infra
 
 builder.Services.AddInfra(builder.Configuration);
+
+// Add Application
+
+builder.Services.AddApplication();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

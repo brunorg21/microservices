@@ -5,9 +5,9 @@ namespace Restaurant.Api.Infra.Repositories
 {
     public class RestaurantRepository(RestaurantDbContext dbContext) : IRestaurantRepository
     {
-        public async Task<Domain.Entities.Restaurant> CreateAsync(Domain.Entities.Restaurant restaurant)
+        public async Task<Domain.Entities.Restaurant> AddAsync(Domain.Entities.Restaurant restaurant, CancellationToken ct)
         {
-            var entry = await dbContext.Restaurants.AddAsync(restaurant);
+            var entry = await dbContext.Restaurants.AddAsync(restaurant, ct);
 
             return entry.Entity;
         }

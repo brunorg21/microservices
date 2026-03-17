@@ -11,5 +11,6 @@
   <Folder Name="/src/Services/" />
   <Folder Name="/src/Services/Restaurant/">
     <Project Path="src/Services/Restaurant/Restaurant.Api/Restaurant.Api.csproj" />
+    <Project Path="src/Services/Restaurant/RestaurantServices.Tests/RestaurantServices.Tests.csproj" Id="08ee4832-6c62-44ac-b70e-6488850bdec2" />
   </Folder>
 </Solution>
