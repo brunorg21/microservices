@@ -19,7 +19,7 @@ namespace CustomerUseCases.Test
             _useCase = new Customer.Api.Application.UseCases.JoinRestaurantQueueUseCase(_mockCustomerRepository.Object, _mockCache.Object);
         }
 
-        [Fact]
+        [Fact(DisplayName = "should be join in restaurant queue")]
         public async Task JoinRestaurantQueue()
         {
             ConfigureMocks();

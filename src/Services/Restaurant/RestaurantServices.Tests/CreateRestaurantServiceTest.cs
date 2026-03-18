@@ -26,7 +26,7 @@ namespace RestaurantServices.Tests
                 });
         }
 
-        [Fact]
+        [Fact(DisplayName = "should be create a restaurant")]
         public async Task ShouldBeCreateRestaurant()
         {
             var name = "Vitinho's Restaurant";
