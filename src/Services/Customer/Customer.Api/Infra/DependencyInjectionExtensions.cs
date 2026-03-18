@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Customer.Api.Domain.Cache;
+using Customer.Api.Infra.Cache;
+using Microsoft.EntityFrameworkCore;
 
 namespace Customer.Api.Infra
 {
@@ -8,6 +10,7 @@ namespace Customer.Api.Infra
         {
             AddDbContext(services, configuration);
             AddRepositories(services);
+            AddCache(services, configuration);
         }
 
         public static void AddDbContext(IServiceCollection services, IConfiguration configuration)
@@ -18,6 +21,24 @@ namespace Customer.Api.Infra
         public static void AddRepositories(IServiceCollection services)
         {
             services.AddScoped<Domain.Repositories.ICustomerRepository, Repositories.CustomerRepository>();
+        }
+
+        public static void AddCache(IServiceCollection services, IConfiguration configuration)
+        {
+            string connectionString = configuration.GetConnectionString("Redis") ?? string.Empty;
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = connectionString;
+                options.InstanceName = "customer:";
+                options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions
+                {
+                    AbortOnConnectFail = true,
+                    EndPoints = { connectionString },
+                };
+            });
+
+            services.AddScoped<ICacheRepository, RedisCacheRepository>();
         }
     }
 }

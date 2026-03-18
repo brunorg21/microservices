@@ -6,11 +6,14 @@
   <Folder Name="/Itens de Solução/">
     <File Path=".gitignore" />
   </Folder>
-  <Folder Name="/src/" />
+  <Folder Name="/src/">
+    <File Path="docker-compose.yml" />
+  </Folder>
   <Folder Name="/src/ApiGateway/" />
   <Folder Name="/src/Services/" />
   <Folder Name="/src/Services/Customer/">
     <Project Path="src/Services/Customer/Customer.Api/Customer.Api.csproj" Id="b919be73-02fc-49f8-aea3-e3e4fdf14ea8" />
+    <Project Path="src/Services/Customer/CustomerUseCases.Test/CustomerUseCases.Test.csproj" Id="84bfcf6a-6a5e-4c8f-8b2a-829df9c06c16" />
   </Folder>
   <Folder Name="/src/Services/Restaurant/">
     <Project Path="src/Services/Restaurant/Restaurant.Api/Restaurant.Api.csproj" />
