@@ -2,7 +2,7 @@
 {
     public interface ICacheRepository
     {
-        Task<T> GetAsync<T>(string key, CancellationToken ct);
-        Task SetAsync<T>(string key, T value, TimeSpan? expirationTime, CancellationToken ct);
+        Task<T> GetKeyAsync<T>(string key, CancellationToken ct);
+        Task SetKeyAsync<T>(string key, T value, TimeSpan? expirationTime, CancellationToken ct);
     }
 }

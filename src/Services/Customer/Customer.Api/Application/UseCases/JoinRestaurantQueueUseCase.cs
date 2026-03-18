@@ -1,4 +1,5 @@
 ﻿using Customer.Api.Application.Interfaces;
+using Customer.Api.Domain.Cache;
 using Customer.Api.Domain.Repositories;
 using Customer.Api.DTOs.Request;
 using Customer.Api.DTOs.Responses;
@@ -9,7 +10,7 @@ namespace Customer.Api.Application.UseCases
     public class JoinRestaurantQueueUseCase
         (
             ICustomerRepository customerRepository,
-            IDistributedCache cache
+            ICacheRepository cache
         ): IJoinRestaurantQueueUseCase
     {
         public async Task<JoinRestaurantQueueResponse> Execute(JoinRestaurantQueueRequest request, CancellationToken ct)
@@ -26,7 +27,7 @@ namespace Customer.Api.Application.UseCases
 
             var customer = await customerRepository.AddAsync(customerToCreate, ct);
 
-            await cache.SetStringAsync(sessionId.ToString(), customer.Id.ToString(), ct);
+            await cache.SetKeyAsync(sessionId.ToString(), customer.Id.ToString(), TimeSpan.FromHours(2), ct);
 
             var response = new JoinRestaurantQueueResponse
             {

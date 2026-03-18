@@ -1,5 +1,6 @@
 ﻿using Customer.Api.Domain.Cache;
 using Microsoft.Extensions.Caching.Distributed;
+using System.Text.Json;
 
 namespace Customer.Api.Infra.Cache
 {
@@ -8,14 +9,21 @@ namespace Customer.Api.Infra.Cache
             IDistributedCache cache
         ): ICacheRepository
     {
-        public Task<T> GetAsync<T>(string key, CancellationToken ct)
+        public async Task<T> GetKeyAsync<T>(string key, CancellationToken ct)
         {
-            throw new NotImplementedException();
+            var bytes = await cache.GetAsync(key, ct);
+            if (bytes == null)
+                return default!;
+
+            return JsonSerializer.Deserialize<T>(bytes)!;
         }
 
-        public Task SetAsync<T>(string key, T value, TimeSpan? expirationTime, CancellationToken ct)
+        public async Task SetKeyAsync<T>(string key, T value, TimeSpan? expirationTime, CancellationToken ct)
         {
-            throw new NotImplementedException();
+            await cache.SetAsync(key, JsonSerializer.SerializeToUtf8Bytes(value), new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = expirationTime
+            }, ct);
         }
     }
 }

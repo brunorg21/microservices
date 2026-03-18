@@ -1,6 +1,6 @@
 ﻿using Customer.Api.Application.Interfaces;
+using Customer.Api.Domain.Cache;
 using Customer.Api.Domain.Repositories;
-using Microsoft.Extensions.Caching.Distributed;
 using Moq;
 using Shouldly;
 
@@ -9,13 +9,13 @@ namespace CustomerUseCases.Test
     public class JoinRestaurantQueueUseCaseTest
     {
         private readonly Mock<ICustomerRepository> _mockCustomerRepository;
-        private readonly Mock<IDistributedCache> _mockCache;
+        private readonly Mock<ICacheRepository> _mockCache;
         private readonly IJoinRestaurantQueueUseCase _useCase;
 
         public JoinRestaurantQueueUseCaseTest()
         {
             _mockCustomerRepository = new Mock<ICustomerRepository>();
-            _mockCache = new Mock<IDistributedCache>();
+            _mockCache = new Mock<ICacheRepository>();
             _useCase = new Customer.Api.Application.UseCases.JoinRestaurantQueueUseCase(_mockCustomerRepository.Object, _mockCache.Object);
         }
 
@@ -51,7 +51,7 @@ namespace CustomerUseCases.Test
                 });
 
             _mockCache
-                .Setup(x => x.SetStringAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DistributedCacheEntryOptions>(), It.IsAny<CancellationToken>()));
+                .Setup(x => x.SetKeyAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<TimeSpan>(), It.IsAny<CancellationToken>()));
         }
     }
 }
