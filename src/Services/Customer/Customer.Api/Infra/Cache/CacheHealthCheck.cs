@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Serilog;
 
-namespace Customer.Api.Infra.Cache
+namespace Auth.Api.Infra.Cache
 {
     public static class CacheHealthCheck
     {
@@ -21,6 +21,8 @@ namespace Customer.Api.Infra.Cache
                     var value = await cache.GetStringAsync("healthcheck");
 
                     Log.Information("Cache health check successful: {Value}", value);
+
+                    await cache.RemoveAsync("healthcheck");
 
                 }
                 catch (Exception ex)

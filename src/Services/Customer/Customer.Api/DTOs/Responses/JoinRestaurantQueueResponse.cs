@@ -1,4 +1,4 @@
-﻿namespace Customer.Api.DTOs.Responses
+﻿namespace Auth.Api.DTOs.Responses
 {
     public class JoinRestaurantQueueResponse
     {

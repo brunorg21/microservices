@@ -1,5 +1,5 @@
 ﻿using Restaurant.Api.Application.Interfaces;
-using Restaurant.Api.Domain.Repositories;
+using Restaurant.Domain.Repositories;
 using Restaurant.Api.DTOs;
 
 namespace Restaurant.Api.Application.Services

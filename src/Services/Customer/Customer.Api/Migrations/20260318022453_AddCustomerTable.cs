@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Customer.Api.Migrations
+namespace Auth.Api.Migrations
 {
     /// <inheritdoc />
     public partial class AddCustomerTable : Migration

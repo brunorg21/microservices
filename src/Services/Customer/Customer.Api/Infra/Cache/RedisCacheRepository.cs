@@ -1,8 +1,8 @@
-﻿using Customer.Api.Domain.Cache;
+﻿using Auth.Api.Domain.Cache;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 
-namespace Customer.Api.Infra.Cache
+namespace Auth.Api.Infra.Cache
 {
     public class RedisCacheRepository
         (

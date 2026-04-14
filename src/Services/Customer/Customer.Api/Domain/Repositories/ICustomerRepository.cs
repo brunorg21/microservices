@@ -1,4 +1,4 @@
-﻿namespace Customer.Api.Domain.Repositories
+﻿namespace Auth.Api.Domain.Repositories
 {
     public interface ICustomerRepository
     {

@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Restaurant.Api.Application.Interfaces;
 using Restaurant.Api.Application.Services;
-using Restaurant.Api.Domain.Repositories;
+using Restaurant.Domain.Repositories;
 using Restaurant.Api.DTOs;
 using Shouldly;
 
@@ -18,8 +18,8 @@ namespace RestaurantServices.Tests
             _createRestaurantService = new CreateRestaurantService(_mockRepository.Object);
 
             _mockRepository
-                .Setup(x => x.AddAsync(It.IsAny<Restaurant.Api.Domain.Entities.Restaurant>(), CancellationToken.None))
-                .ReturnsAsync(new Restaurant.Api.Domain.Entities.Restaurant
+                .Setup(x => x.AddAsync(It.IsAny<Restaurant.Domain.Entities.Restaurant>(), CancellationToken.None))
+                .ReturnsAsync(new Restaurant.Domain.Entities.Restaurant
                 {
                     Id = Guid.NewGuid(),
                     Name = "Test Restaurant"

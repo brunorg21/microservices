@@ -1,4 +1,4 @@
-﻿namespace Customer.Api.DTOs.Request
+﻿namespace Auth.Api.DTOs.Request
 {
     public class JoinRestaurantQueueRequest
     {

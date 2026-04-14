@@ -1,7 +1,7 @@
-﻿using Customer.Api.DTOs.Request;
-using Customer.Api.DTOs.Responses;
+﻿using Auth.Api.DTOs.Request;
+using Auth.Api.DTOs.Responses;
 
-namespace Customer.Api.Application.Interfaces
+namespace Auth.Api.Application.Interfaces
 {
     public interface IJoinRestaurantQueueUseCase
     {

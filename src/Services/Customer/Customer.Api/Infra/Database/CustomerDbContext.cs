@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Customer.Api.Infra.Database
+namespace Auth.Api.Infra.Database
 {
     public class CustomerDbContext : DbContext
     {

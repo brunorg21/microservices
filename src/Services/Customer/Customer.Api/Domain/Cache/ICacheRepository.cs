@@ -1,4 +1,4 @@
-﻿namespace Customer.Api.Domain.Cache
+﻿namespace Auth.Api.Domain.Cache
 {
     public interface ICacheRepository
     {

@@ -24,4 +24,9 @@
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Restaurant.Domain\Restaurant.Domain.csproj" />
+    <ProjectReference Include="..\Restaurant.Infra\Restaurant.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

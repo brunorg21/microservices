@@ -1,4 +1,4 @@
-﻿namespace Customer.Api.Domain.Entities
+﻿namespace Auth.Api.Domain.Entities
 {
     public class Customer
     {

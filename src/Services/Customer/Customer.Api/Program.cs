@@ -1,6 +1,8 @@
-using Customer.Api.Application;
-using Customer.Api.Infra;
-using Customer.Api.Infra.Cache;
+using Auth.Api.Application;
+using Auth.Api.Infra;
+using Auth.Api.Infra.Cache;
+using Messaging.Shared;
+using Scalar.AspNetCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,8 @@ builder.Host.UseSerilog();
 
 //Add Infra
 builder.Services.AddInfra(builder.Configuration);
+
+builder.Services.AddRabbitMQ(builder.Configuration);
 
 //Add Application
 builder.Services.AddApplication();
@@ -35,6 +39,7 @@ await app.AddCacheHealthCheck();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.MapScalarApiReference("/api-docs");
 }
 
 app.UseHttpsRedirection();

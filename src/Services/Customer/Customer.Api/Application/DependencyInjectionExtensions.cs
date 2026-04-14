@@ -1,7 +1,7 @@
-﻿using Customer.Api.Application.Interfaces;
-using Customer.Api.Application.UseCases;
+﻿using Auth.Api.Application.Interfaces;
+using Auth.Api.Application.UseCases;
 
-namespace Customer.Api.Application
+namespace Auth.Api.Application
 {
     public static class DependencyInjectionExtensions
     {

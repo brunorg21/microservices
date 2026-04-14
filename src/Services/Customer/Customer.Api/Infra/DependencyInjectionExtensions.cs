@@ -1,8 +1,8 @@
-﻿using Customer.Api.Domain.Cache;
-using Customer.Api.Infra.Cache;
+﻿using Auth.Api.Domain.Cache;
+using Auth.Api.Infra.Cache;
 using Microsoft.EntityFrameworkCore;
 
-namespace Customer.Api.Infra
+namespace Auth.Api.Infra
 {
     public static class DependencyInjectionExtensions
     {
@@ -16,7 +16,7 @@ namespace Customer.Api.Infra
         public static void AddDbContext(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<Database.CustomerDbContext>(options =>
-                options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(configuration.GetConnectionString("Connection")));
         }
         public static void AddRepositories(IServiceCollection services)
         {

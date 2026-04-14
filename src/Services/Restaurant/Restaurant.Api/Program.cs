@@ -1,5 +1,5 @@
 using Restaurant.Api.Application;
-using Restaurant.Api.Infra;
+using Restaurant.Infra;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -11,12 +11,18 @@
   </Folder>
   <Folder Name="/src/ApiGateway/" />
   <Folder Name="/src/Services/" />
-  <Folder Name="/src/Services/Customer/">
-    <Project Path="src/Services/Customer/Customer.Api/Customer.Api.csproj" Id="b919be73-02fc-49f8-aea3-e3e4fdf14ea8" />
-    <Project Path="src/Services/Customer/CustomerUseCases.Test/CustomerUseCases.Test.csproj" Id="84bfcf6a-6a5e-4c8f-8b2a-829df9c06c16" />
+  <Folder Name="/src/Services/Auth/">
+    <Project Path="src/Services/Customer/Customer.Api/Auth.Api.csproj" Id="b919be73-02fc-49f8-aea3-e3e4fdf14ea8" />
+    <Project Path="src/Services/Customer/CustomerUseCases.Test/AuthUseCases.Test.csproj" Id="84bfcf6a-6a5e-4c8f-8b2a-829df9c06c16" />
   </Folder>
   <Folder Name="/src/Services/Restaurant/">
     <Project Path="src/Services/Restaurant/Restaurant.Api/Restaurant.Api.csproj" />
+    <Project Path="src/Services/Restaurant/Restaurant.Domain/Restaurant.Domain.csproj" Id="56384407-6d79-4c38-af51-2d80344a3171" />
+    <Project Path="src/Services/Restaurant/Restaurant.Infra/Restaurant.Infra.csproj" Id="38282ef6-5124-46e7-9f64-08fe4a6e945f" />
+    <Project Path="src/Services/Restaurant/Restaurant.Worker/Restaurant.Worker.csproj" Id="655bbeef-8877-4c81-8c07-604e2e3ff114" />
     <Project Path="src/Services/Restaurant/RestaurantServices.Tests/RestaurantServices.Tests.csproj" Id="08ee4832-6c62-44ac-b70e-6488850bdec2" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/Messaging.Shared/Messaging.Shared.csproj" Id="531560a0-12ae-4570-9c49-e1b62367a165" />
   </Folder>
 </Solution>

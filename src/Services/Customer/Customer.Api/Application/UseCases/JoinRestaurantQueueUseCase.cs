@@ -1,16 +1,18 @@
-﻿using Customer.Api.Application.Interfaces;
-using Customer.Api.Domain.Cache;
-using Customer.Api.Domain.Repositories;
-using Customer.Api.DTOs.Request;
-using Customer.Api.DTOs.Responses;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Auth.Api.Application.Interfaces;
+using Auth.Api.Domain.Cache;
+using Auth.Api.Domain.Repositories;
+using Auth.Api.DTOs.Request;
+using Auth.Api.DTOs.Responses;
+using Messaging.Shared.Abstractions.Publishers.RabbitMQ;
+using Messaging.Shared.Contracts;
 
-namespace Customer.Api.Application.UseCases
+namespace Auth.Api.Application.UseCases
 {
     public class JoinRestaurantQueueUseCase
         (
             ICustomerRepository customerRepository,
-            ICacheRepository cache
+            ICacheRepository cache,
+            IRabbitMQPublisher publisher
         ): IJoinRestaurantQueueUseCase
     {
         public async Task<JoinRestaurantQueueResponse> Execute(JoinRestaurantQueueRequest request, CancellationToken ct)
@@ -27,7 +29,20 @@ namespace Customer.Api.Application.UseCases
 
             var customer = await customerRepository.AddAsync(customerToCreate, ct);
 
-            await cache.SetKeyAsync(sessionId.ToString(), customer.Id.ToString(), TimeSpan.FromHours(2), ct);
+            await cache.SetKeyAsync(
+                sessionId.ToString(), 
+                customer.Id.ToString(), 
+                TimeSpan.FromHours(24), 
+                ct);
+
+            var message = new JoinRestaurantQueueEvent
+            {
+                CustomerId = customer.Id,
+                AccessToken = sessionId,
+                CustomerName = request.Name
+            };
+
+            await publisher.Publish(message);
 
             var response = new JoinRestaurantQueueResponse
             {

@@ -1,7 +1,7 @@
-﻿using Customer.Api.Domain.Repositories;
-using Customer.Api.Infra.Database;
+﻿using Auth.Api.Domain.Repositories;
+using Auth.Api.Infra.Database;
 
-namespace Customer.Api.Infra.Repositories
+namespace Auth.Api.Infra.Repositories
 {
     public class CustomerRepository(CustomerDbContext dbContext) : ICustomerRepository
     {
