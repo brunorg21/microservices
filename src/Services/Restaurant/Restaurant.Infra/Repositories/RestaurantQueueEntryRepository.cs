@@ -23,6 +23,11 @@ namespace Restaurant.Infra.Repositories
             return restaurantQueueEntry;
         }
 
+        public async Task<int> GetLastPosition()
+        {
+            return await dbContext.RestaurantQueueEntries.MaxAsync(rq => rq.Position);
+        }
+
         public void Update(RestaurantQueueEntry restaurantQueueEntry)
         {
             dbContext.RestaurantQueueEntries.Update(restaurantQueueEntry);

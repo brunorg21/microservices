@@ -17,8 +17,8 @@ namespace Restaurant.Worker
         private async Task HandleJoinQueueAsync(JoinRestaurantQueueEvent @event)
         {
             logger.LogInformation(
-                "Customer with id {CustomerId} and name {CustomerName} has joined the restaurant queue.",
-                @event.CustomerId, @event.CustomerName);
+                "Customer with id {CustomerId} has joined on restaurant with id {RestaurantId}",
+                @event.CustomerId, @event.RestaurantId);
 
             await Task.CompletedTask;
         }

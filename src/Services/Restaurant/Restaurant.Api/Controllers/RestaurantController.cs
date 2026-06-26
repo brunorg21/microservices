@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Restaurant.Api.Application.Interfaces;
-using Restaurant.Api.DTOs;
+using Restaurant.Application.Interfaces;
+using Restaurant.Domain.DTOs.Requests;
 
 namespace Restaurant.Api.Controllers
 {
@@ -11,13 +11,12 @@ namespace Restaurant.Api.Controllers
    
         [HttpPost]
         public async Task<IActionResult> Create(
-            [FromServices] ICreateRestaurantService createRestaurantService, 
-            CreateRestaurantRequest request,
-            CancellationToken ct)
+            [FromServices] ICreateRestaurantUseCase useCase, 
+            CreateRestaurantRequest request)
         {
-            var (statusCode, result) = await createRestaurantService.CreateAsync(request, ct);
+            var response = await useCase.Execute(request);
 
-            return StatusCode(statusCode, result);
+            return Created(string.Empty, response);
         }
     }
 }

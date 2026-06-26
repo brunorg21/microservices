@@ -1,4 +1,4 @@
-using Restaurant.Api.Application;
+using Restaurant.Application;
 using Restaurant.Infra;
 using Scalar.AspNetCore;
 

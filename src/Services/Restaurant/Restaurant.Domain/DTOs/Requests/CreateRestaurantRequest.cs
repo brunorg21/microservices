@@ -1,4 +1,4 @@
-﻿namespace Restaurant.Api.DTOs
+﻿namespace Restaurant.Domain.DTOs.Requests
 {
     public class CreateRestaurantRequest
     {

@@ -7,5 +7,6 @@ namespace Restaurant.Domain.Repositories
         Task<RestaurantQueueEntry> AddAsync(RestaurantQueueEntry restaurantQueueEntry);
         Task<RestaurantQueueEntry?> GetById(Guid id, bool withAsNoTracking = true);
         void Update(RestaurantQueueEntry restaurantQueueEntry);
+        Task<int> GetLastPosition();
     }
 }

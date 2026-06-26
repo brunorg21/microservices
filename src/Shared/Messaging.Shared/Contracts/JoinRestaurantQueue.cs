@@ -6,6 +6,6 @@
 
         public Guid AccessToken { get; set; }
         public Guid CustomerId { get; set; }
-        public string CustomerName { get; set; } = string.Empty;
+        public Guid RestaurantId { get; set; }
     }
 }

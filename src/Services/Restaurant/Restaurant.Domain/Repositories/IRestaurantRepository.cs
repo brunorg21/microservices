@@ -2,6 +2,6 @@
 {
     public interface IRestaurantRepository
     {
-        Task<Entities.Restaurant> AddAsync(Entities.Restaurant restaurant, CancellationToken ct);
+        Task<Entities.Restaurant> AddAsync(Entities.Restaurant restaurant);
     }
 }

@@ -5,11 +5,11 @@ namespace Restaurant.Infra.Repositories
 {
     public class RestaurantRepository(RestaurantDbContext dbContext) : IRestaurantRepository
     {
-        public async Task<Domain.Entities.Restaurant> AddAsync(Domain.Entities.Restaurant restaurant, CancellationToken ct)
+        public async Task<Domain.Entities.Restaurant> AddAsync(Domain.Entities.Restaurant restaurant)
         {
-            var entry = await dbContext.Restaurants.AddAsync(restaurant, ct);
+            var entry = await dbContext.Restaurants.AddAsync(restaurant);
 
-            await dbContext.SaveChangesAsync(ct);
+            await dbContext.SaveChangesAsync();
 
             return entry.Entity;
         }

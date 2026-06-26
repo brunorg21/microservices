@@ -6,6 +6,7 @@ namespace Restaurant.Domain.Entities
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public Guid RestaurantId { get; set; }
+        public Guid CustomerId { get; set; }
         public int Position { get; set; }
         public RestaurantQueueEntriesStatus Status { get; set; } = RestaurantQueueEntriesStatus.WAITING;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
