@@ -17,6 +17,7 @@
   </Folder>
   <Folder Name="/src/Services/Restaurant/">
     <Project Path="src/Services/Restaurant/Restaurant.Api/Restaurant.Api.csproj" />
+    <Project Path="src/Services/Restaurant/Restaurant.Application/Restaurant.Application.csproj" Id="25885a46-2401-442d-9df2-d9464467b48a" />
     <Project Path="src/Services/Restaurant/Restaurant.Domain/Restaurant.Domain.csproj" Id="56384407-6d79-4c38-af51-2d80344a3171" />
     <Project Path="src/Services/Restaurant/Restaurant.Infra/Restaurant.Infra.csproj" Id="38282ef6-5124-46e7-9f64-08fe4a6e945f" />
     <Project Path="src/Services/Restaurant/Restaurant.Worker/Restaurant.Worker.csproj" Id="655bbeef-8877-4c81-8c07-604e2e3ff114" />

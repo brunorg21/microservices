@@ -39,7 +39,7 @@ namespace Auth.Api.Application.UseCases
             {
                 CustomerId = customer.Id,
                 AccessToken = sessionId,
-                CustomerName = request.Name
+                RestaurantId = request.RestaurantId
             };
 
             await publisher.Publish(message);

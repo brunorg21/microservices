@@ -5,5 +5,6 @@
         public string Name { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
         public int Seats { get; set; }
+        public Guid RestaurantId { get; set; }
     }
 }
