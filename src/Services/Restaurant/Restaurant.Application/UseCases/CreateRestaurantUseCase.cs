@@ -5,7 +5,7 @@ using Restaurant.Domain.Repositories;
 
 namespace Restaurant.Application.UseCases
 {
-    internal class CreateRestaurantUseCase(
+    public class CreateRestaurantUseCase(
         IRestaurantRepository restaurantRepository
         ) : ICreateRestaurantUseCase
     {
