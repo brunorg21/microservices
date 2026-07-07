@@ -1,11 +1,14 @@
 using Messaging.Shared.Abstractions.Consumers.RabbitMQ;
 using Messaging.Shared.Contracts;
+using Restaurant.Application.Interfaces;
+using Restaurant.Domain.DTOs.Requests;
 
 namespace Restaurant.Worker
 {
     public class RestaurantConsumer(
         ILogger<RestaurantConsumer> logger, 
-        IRabbitMQConsumer consumer) : BackgroundService
+        IRabbitMQConsumer consumer,
+        IRegisterQueueEntryUseCase useCase) : BackgroundService
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -20,7 +23,13 @@ namespace Restaurant.Worker
                 "Customer with id {CustomerId} has joined on restaurant with id {RestaurantId}",
                 @event.CustomerId, @event.RestaurantId);
 
-            await Task.CompletedTask;
+            var request = new RegisterQueueEntryRequest
+            {
+                CustomerId = @event.CustomerId,
+                RestaurantId = @event.RestaurantId,
+            };
+
+            await useCase.Execute(request);
         }
     }
 }

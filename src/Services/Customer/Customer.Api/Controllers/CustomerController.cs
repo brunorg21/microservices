@@ -10,20 +10,12 @@ namespace Auth.Api.Controllers
     {
         [HttpPost]
         public async Task<ActionResult> JoinQueue(
-            [FromServices] IJoinRestaurantQueueUseCase useCase, 
+            [FromServices] IJoinRestaurantQueueUseCase useCase,
             JoinRestaurantQueueRequest request,
             CancellationToken ct,
             HttpContext ctx) 
         { 
             var response = await useCase.Execute(request, ct);
-
-            ctx.Response.Cookies.Append("session_id", response.AccessToken, new CookieOptions
-            {
-                HttpOnly = true,
-                MaxAge = TimeSpan.FromHours(24),
-                Secure = true,
-                SameSite = SameSiteMode.Strict
-            });
 
             return Created(string.Empty, response);
         }

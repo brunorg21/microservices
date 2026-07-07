@@ -35,6 +35,8 @@ namespace Restaurant.Infra
         public static void AddRepositories(IServiceCollection services)
         {
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
+            services.AddScoped<IRestaurantQueueEntryRepository, RestaurantQueueEntryRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }

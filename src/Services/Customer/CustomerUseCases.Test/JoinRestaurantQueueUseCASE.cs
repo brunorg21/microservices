@@ -10,14 +10,14 @@ namespace CustomerUseCases.Test
 {
     public class JoinRestaurantQueueUseCaseTest
     {
-        private readonly Mock<ICustomerRepository> _mockCustomerRepository;
+        private readonly Mock<IUserRepository> _mockCustomerRepository;
         private readonly Mock<ICacheRepository> _mockCache;
         private readonly Mock<IRabbitMQPublisher> _publisher;
         private readonly IJoinRestaurantQueueUseCase _useCase;
 
         public JoinRestaurantQueueUseCaseTest()
         {
-            _mockCustomerRepository = new Mock<ICustomerRepository>();
+            _mockCustomerRepository = new Mock<IUserRepository>();
             _mockCache = new Mock<ICacheRepository>();
             _publisher = new Mock<IRabbitMQPublisher>();
             _useCase = new Auth.Api.Application.UseCases.JoinRestaurantQueueUseCase(

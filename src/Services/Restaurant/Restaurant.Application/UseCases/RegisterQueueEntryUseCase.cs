@@ -9,6 +9,7 @@ namespace Restaurant.Application.UseCases
 {
     internal class RegisterQueueEntryUseCase(
         IRestaurantQueueEntryRepository queueEntryRepository,
+        IUnitOfWork uow,
         IDistributedLockProvider lockProvider
         ) : IRegisterQueueEntryUseCase
     {
@@ -36,6 +37,7 @@ namespace Restaurant.Application.UseCases
                 };
 
                 var queueEntry = await queueEntryRepository.AddAsync(queueToPersist);
+                await uow.CommitAsync();
 
                 return new RegisterQueueEntryResponse 
                 { 

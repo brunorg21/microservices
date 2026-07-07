@@ -1,10 +1,10 @@
 using Messaging.Shared;
-using Restaurant.Infra;
+using Restaurant.Application;
 using Restaurant.Worker;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.Services.AddInfra(builder.Configuration);
+builder.Services.AddApplication();
 
 builder.Services.AddRabbitMQ(builder.Configuration);
 

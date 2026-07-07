@@ -1,5 +1,5 @@
-﻿using Auth.Api.Domain.Cache;
-using Auth.Api.Infra.Cache;
+﻿using Auth.Api.Domain.Security.Token;
+using Auth.Api.Infra.Security.Token;
 using Microsoft.EntityFrameworkCore;
 
 namespace Auth.Api.Infra
@@ -10,35 +10,18 @@ namespace Auth.Api.Infra
         {
             AddDbContext(services, configuration);
             AddRepositories(services);
-            AddCache(services, configuration);
+
+            services.AddScoped<ITokenGenerator>(_ => new JwtTokenGenerator(configuration["Jwt:SecretKey"]!));
         }
 
         public static void AddDbContext(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<Database.CustomerDbContext>(options =>
+            services.AddDbContext<Database.AuthDbContext>(options =>
                 options.UseSqlite(configuration.GetConnectionString("Connection")));
         }
         public static void AddRepositories(IServiceCollection services)
         {
-            services.AddScoped<Domain.Repositories.ICustomerRepository, Repositories.CustomerRepository>();
-        }
-
-        public static void AddCache(IServiceCollection services, IConfiguration configuration)
-        {
-            string connectionString = configuration.GetConnectionString("Redis") ?? string.Empty;
-
-            services.AddStackExchangeRedisCache(options =>
-            {
-                options.Configuration = connectionString;
-                options.InstanceName = "customer:";
-                options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions
-                {
-                    AbortOnConnectFail = true,
-                    EndPoints = { connectionString },
-                };
-            });
-
-            services.AddScoped<ICacheRepository, RedisCacheRepository>();
+            services.AddScoped<Domain.Repositories.IUserRepository, Repositories.UserRepository>();
         }
     }
 }

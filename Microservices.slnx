@@ -15,6 +15,9 @@
     <Project Path="src/Services/Customer/Customer.Api/Auth.Api.csproj" Id="b919be73-02fc-49f8-aea3-e3e4fdf14ea8" />
     <Project Path="src/Services/Customer/CustomerUseCases.Test/AuthUseCases.Test.csproj" Id="84bfcf6a-6a5e-4c8f-8b2a-829df9c06c16" />
   </Folder>
+  <Folder Name="/src/Services/QueueNotification/">
+    <Project Path="src/Services/QueueNotification/QueueNotification.Api/QueueNotification.Api.csproj" Id="38fe01eb-747d-4537-8a9c-4fc0e0ccd3ac" />
+  </Folder>
   <Folder Name="/src/Services/Restaurant/">
     <Project Path="src/Services/Restaurant/Restaurant.Api/Restaurant.Api.csproj" />
     <Project Path="src/Services/Restaurant/Restaurant.Application/Restaurant.Application.csproj" Id="25885a46-2401-442d-9df2-d9464467b48a" />

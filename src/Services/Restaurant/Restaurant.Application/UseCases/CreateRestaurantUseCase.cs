@@ -6,7 +6,8 @@ using Restaurant.Domain.Repositories;
 namespace Restaurant.Application.UseCases
 {
     public class CreateRestaurantUseCase(
-        IRestaurantRepository restaurantRepository
+        IRestaurantRepository restaurantRepository,
+        IUnitOfWork uow
         ) : ICreateRestaurantUseCase
     {
         public async Task<CreateRestaurantResponse> Execute(CreateRestaurantRequest request)
@@ -17,6 +18,7 @@ namespace Restaurant.Application.UseCases
             };
 
             var restaurant = await restaurantRepository.AddAsync(restaurantToCreate);
+            await uow.CommitAsync();
 
             return new CreateRestaurantResponse
             {
