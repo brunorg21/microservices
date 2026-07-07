@@ -11,11 +11,13 @@ namespace RestaurantServices.Tests
     {
         private readonly ICreateRestaurantUseCase _createRestaurantUseCase;
         private readonly Mock<IRestaurantRepository> _mockRepository;
+        private readonly Mock<IUnitOfWork> _mockUow;
 
         public CreateRestaurantServiceTests()
         {
             _mockRepository = new Mock<IRestaurantRepository>();
-            _createRestaurantUseCase = new CreateRestaurantUseCase(_mockRepository.Object);
+            _mockUow = new Mock<IUnitOfWork>();
+            _createRestaurantUseCase = new CreateRestaurantUseCase(_mockRepository.Object, _mockUow.Object);
 
             _mockRepository
                 .Setup(x => x.AddAsync(It.IsAny<Restaurant.Domain.Entities.Restaurant>()))
@@ -24,6 +26,7 @@ namespace RestaurantServices.Tests
                     Id = Guid.NewGuid(),
                     Name = "Test Restaurant"
                 });
+            _mockUow.Setup(x => x.CommitAsync());
         }
 
         [Fact(DisplayName = "should be create a restaurant")]
