@@ -59,7 +59,7 @@ namespace CustomerUseCases.Test
             _publisher
                 .Setup(x => x.Publish<JoinRestaurantQueueEvent>(It.IsAny<JoinRestaurantQueueEvent>()));
 
-            _mockTokenGenerator.Setup(x => x.GenerateToken(It.IsAny<Auth.Api.Domain.Entities.User>()));
+            _mockTokenGenerator.Setup(x => x.GenerateToken(It.IsAny<Auth.Api.Domain.Entities.User>())).ReturnsAsync("mocked-token");
         }
     }
 }
