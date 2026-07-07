@@ -1,5 +1,4 @@
 ﻿using Auth.Api.Application.Interfaces;
-using Auth.Api.Domain.Cache;
 using Auth.Api.Domain.Repositories;
 using Auth.Api.Domain.Security.Token;
 using Messaging.Shared.Abstractions.Publishers.RabbitMQ;

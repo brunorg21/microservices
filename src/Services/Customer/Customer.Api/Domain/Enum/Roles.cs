@@ -1,4 +1,4 @@
-﻿namespace Auth.Api.Domain
+﻿namespace Auth.Api.Domain.Enum
 {
     public class Roles
     {

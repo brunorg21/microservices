@@ -3,7 +3,7 @@ using Auth.Api.Infra.Database;
 
 namespace Auth.Api.Infra.Repositories
 {
-    public class UserRepository(AuthDbContext dbContext) : ICustomerRepository
+    public class UserRepository(AuthDbContext dbContext) : IUserRepository
     {
         public async Task<Domain.Entities.User> AddAsync(Domain.Entities.User customer, CancellationToken ct)
         {

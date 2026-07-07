@@ -1,5 +1,4 @@
 ﻿using Auth.Api.Application.Interfaces;
-using Auth.Api.Domain.Cache;
 using Auth.Api.Domain.Repositories;
 using Auth.Api.Domain.Security.Token;
 using Auth.Api.DTOs.Request;
@@ -34,7 +33,7 @@ namespace Auth.Api.Application.UseCases
             };
 
             await publisher.Publish(message);
-
+            
             var accessToken = await tokenGenerator.GenerateToken(user);
 
             var response = new JoinRestaurantQueueResponse
