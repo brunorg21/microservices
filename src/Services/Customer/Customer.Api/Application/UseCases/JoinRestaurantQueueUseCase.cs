@@ -32,7 +32,7 @@ namespace Auth.Api.Application.UseCases
                 RestaurantId = request.RestaurantId
             };
 
-            await publisher.Publish(message);
+            await publisher.Publish<JoinRestaurantQueueEvent>(message);
             
             var accessToken = await tokenGenerator.GenerateToken(user);
 
