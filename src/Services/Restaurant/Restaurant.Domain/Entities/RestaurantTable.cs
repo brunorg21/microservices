@@ -9,8 +9,6 @@
         public bool Available { get; set; } = true;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; }
-
-        // Relations
         public Guid RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; } = null!;
     }
