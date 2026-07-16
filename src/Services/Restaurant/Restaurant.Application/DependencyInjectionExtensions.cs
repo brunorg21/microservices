@@ -10,6 +10,9 @@ namespace Restaurant.Application
         {
             services.AddScoped<IRegisterQueueEntryUseCase, RegisterQueueEntryUseCase>();
             services.AddScoped<ICreateRestaurantUseCase, CreateRestaurantUseCase>();
+            services.AddScoped<ICreateRestaurantTableUseCase, CreateRestaurantTableUseCase>();
+            services.AddScoped<ICallNextCustomerUseCase, CallNextCustomerUseCase>();
+            services.AddScoped<ICancelQueueEntryUseCase, CancelQueueEntryUseCase>();
         }
     }
 }

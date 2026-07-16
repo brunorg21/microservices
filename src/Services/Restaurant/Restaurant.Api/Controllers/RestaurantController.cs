@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.DTOs.Requests;
 
 namespace Restaurant.Api.Controllers
 {
+    [Authorize(Roles = "admin")]
     [ApiController]
     [Route("[controller]")]
     public class RestaurantController : ControllerBase

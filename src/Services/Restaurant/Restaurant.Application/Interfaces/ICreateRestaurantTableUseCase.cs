@@ -1,10 +1,9 @@
 ﻿using Restaurant.Domain.DTOs.Requests;
-using Restaurant.Domain.DTOs.Responses;
 
 namespace Restaurant.Application.Interfaces
 {
-    internal interface ICreateRestaurantTableUseCase
+    public interface ICreateRestaurantTableUseCase
     {
-        Task<CreateRestaurantTableResponse> Execute(List<CreateRestaurantRequest> request);
+        Task Execute(CreateRestaurantTableListRequest request);
     }
 }

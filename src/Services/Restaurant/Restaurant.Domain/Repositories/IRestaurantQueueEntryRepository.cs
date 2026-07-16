@@ -8,5 +8,6 @@ namespace Restaurant.Domain.Repositories
         Task<RestaurantQueueEntry?> GetById(Guid id, bool withAsNoTracking = true);
         void Update(RestaurantQueueEntry restaurantQueueEntry);
         Task<int> GetLastPosition();
+        Task<RestaurantQueueEntry?> GetNextCustomer(Guid restaurantId); 
     }
 }

@@ -1,19 +1,23 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.Application.Interfaces;
 using Restaurant.Domain.DTOs.Requests;
 
 namespace Restaurant.Api.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class RestaurantTableController : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> CreateTables([FromBody] List<CreateRestaurantTableRequest> request)
+        public async Task<IActionResult> CreateTables(
+            [FromServices] ICreateRestaurantTableUseCase useCase, 
+            [FromBody] CreateRestaurantTableListRequest request)
         {
+            await useCase.Execute(request);
 
-            return StatusCode(201);
+            return Created();
         }
     }
 }

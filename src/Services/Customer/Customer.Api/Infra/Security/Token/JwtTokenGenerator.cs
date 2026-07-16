@@ -1,4 +1,5 @@
 ﻿using Auth.Api.Domain.Entities;
+using Auth.Api.Domain.Enum;
 using Auth.Api.Domain.Security.Token;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,8 +19,13 @@ namespace Auth.Api.Infra.Security.Token
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Sid, user.Id.ToString())
+                new Claim(ClaimTypes.Sid, user.Id.ToString()),
             };
+
+            if (user.UserRoles.Any(ur => ur.Role.Name == Roles.Admin))
+            {
+                claims.Add(new Claim("restaurantId", user.RestaurantId.ToString()));
+            }
 
             claims.AddRange(user.UserRoles.Select(ur => new Claim(ClaimTypes.Role, ur.Role.Name)));
 

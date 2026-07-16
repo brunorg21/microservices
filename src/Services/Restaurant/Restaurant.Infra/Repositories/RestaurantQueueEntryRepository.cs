@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurant.Domain.Entities;
+using Restaurant.Domain.Enums;
 using Restaurant.Domain.Repositories;
 using Restaurant.Infra.Database;
 
@@ -26,6 +27,13 @@ namespace Restaurant.Infra.Repositories
         public async Task<int> GetLastPosition()
         {
             return await dbContext.RestaurantQueueEntries.MaxAsync(rq => rq.Position);
+        }
+
+        public async Task<RestaurantQueueEntry?> GetNextCustomer(Guid restaurantId)
+        {
+            return await dbContext.RestaurantQueueEntries
+                .Where(rq => rq.RestaurantId == restaurantId && rq.Status == RestaurantQueueEntriesStatus.WAITING)
+                .OrderBy(rq => rq.Position).FirstOrDefaultAsync();
         }
 
         public void Update(RestaurantQueueEntry restaurantQueueEntry)

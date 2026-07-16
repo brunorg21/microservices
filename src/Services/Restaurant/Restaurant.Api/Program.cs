@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Restaurant.Api.User;
 using Restaurant.Application;
+using Restaurant.Application.Interfaces;
 using Restaurant.Infra;
 using Scalar.AspNetCore;
 using System.Text;
@@ -19,6 +21,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ClockSkew = TimeSpan.Zero
         };
     });
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ILoggedUser, LoggedUser>();
+
 builder.Services.AddAuthorization();
 
 builder.Services.AddInfra(builder.Configuration);
