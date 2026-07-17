@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Messaging.Shared\Messaging.Shared.csproj" />
     <ProjectReference Include="..\Restaurant.Domain\Restaurant.Domain.csproj" />
     <ProjectReference Include="..\Restaurant.Infra\Restaurant.Infra.csproj" />
   </ItemGroup>

@@ -1,4 +1,6 @@
 ﻿using Medallion.Threading;
+using Messaging.Shared.Abstractions.Publishers.RabbitMQ;
+using Messaging.Shared.Contracts;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.DTOs.Requests;
 using Restaurant.Domain.DTOs.Responses;
@@ -10,7 +12,8 @@ namespace Restaurant.Application.UseCases
     internal class RegisterQueueEntryUseCase(
         IRestaurantQueueEntryRepository queueEntryRepository,
         IUnitOfWork uow,
-        IDistributedLockProvider lockProvider
+        IDistributedLockProvider lockProvider,
+        IRabbitMQPublisher publisher
         ) : IRegisterQueueEntryUseCase
     {
         public async Task<RegisterQueueEntryResponse> Execute(RegisterQueueEntryRequest request)
@@ -39,6 +42,14 @@ namespace Restaurant.Application.UseCases
                 var queueEntry = await queueEntryRepository.AddAsync(queueToPersist);
                 await uow.CommitAsync();
 
+                var notifyEvent = new NotifyQueueEntryEvent
+                {
+                    CustomerId = queueEntry.CustomerId,
+                    Position = queueEntry.Position
+                };
+
+                await publisher.Publish<NotifyQueueEntryEvent>(notifyEvent);
+
                 return new RegisterQueueEntryResponse 
                 { 
                     QueueEntryId = queueEntry.Id,
@@ -47,8 +58,6 @@ namespace Restaurant.Application.UseCases
                     Position = queueEntry.Position
                 };
             }
-
-            throw new Exception($"Failed to register queue entry for Customer with id {request.CustomerId}");
         }
     }
 }

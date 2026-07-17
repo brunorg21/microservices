@@ -6,9 +6,9 @@ using Restaurant.Domain.DTOs.Requests;
 namespace Restaurant.Worker
 {
     public class RestaurantConsumer(
-        ILogger<RestaurantConsumer> logger, 
+        ILogger<RestaurantConsumer> logger,
         IRabbitMQConsumer consumer,
-        IRegisterQueueEntryUseCase useCase) : BackgroundService
+        IServiceScopeFactory scopeFactory) : BackgroundService
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -22,6 +22,9 @@ namespace Restaurant.Worker
             logger.LogInformation(
                 "Customer with id {CustomerId} has joined on restaurant with id {RestaurantId}",
                 @event.CustomerId, @event.RestaurantId);
+
+            using var scope = scopeFactory.CreateScope();
+            var useCase = scope.ServiceProvider.GetRequiredService<IRegisterQueueEntryUseCase>();
 
             var request = new RegisterQueueEntryRequest
             {

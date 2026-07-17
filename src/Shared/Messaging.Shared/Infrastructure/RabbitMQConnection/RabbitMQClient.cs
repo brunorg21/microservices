@@ -10,12 +10,17 @@ namespace Messaging.Shared.Infrastructure.RabbitMQConnection
         ILogger<RabbitMQClient> logger) : IRabbitMQClient, IDisposable
     {
         private IConnection? connection;
+        private readonly SemaphoreSlim connectionLock = new(1, 1);
 
         public async Task<IConnection> GetConnection()
         {
+            if (connection is { IsOpen: true })
+                return connection;
+
+            await connectionLock.WaitAsync();
             try
             {
-                if (connection != null && connection.IsOpen)
+                if (connection is { IsOpen: true })
                     return connection;
 
                 var factory = new ConnectionFactory
@@ -30,18 +35,23 @@ namespace Messaging.Shared.Infrastructure.RabbitMQConnection
 
                 return connection;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                logger.LogError($"Failed to connect to RabbitMQ, {0}", ex);
+                logger.LogError(ex, "Failed to connect to RabbitMQ");
                 throw new InvalidOperationException(
                     "Failed to connect to RabbitMQ",
                     ex
                 );
             }
+            finally
+            {
+                connectionLock.Release();
+            }
         }
         public void Dispose()
         {
             connection?.Dispose();
+            connectionLock.Dispose();
         }
     }
 }
